@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Surprise | Cleopatra Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ff4d6d;
+            --secondary: #ffb3c1;
+            --dark: #590d22;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }
+
+        body { background: #fff0f3; color: var(--dark); overflow-x: hidden; text-align: center; }
+
+        .container { max-width: 600px; margin: auto; padding: 20px; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
+
+        /* Quiz Card */
+        #quiz-card {
+            background: white;
+            padding: 30px;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border: 2px solid var(--secondary);
+        }
+
+        h1 { font-family: 'Dancing Script', cursive; color: var(--primary); font-size: 2.5rem; margin-bottom: 10px; }
+        
+        .question-box { margin-bottom: 25px; text-align: right; background: #fff5f7; padding: 15px; border-radius: 15px; }
+        
+        p.q-text { font-weight: bold; margin-bottom: 10px; color: var(--dark); line-height: 1.6; }
+
+        select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid var(--secondary);
+            background: white;
+            font-size: 0.9rem;
+            outline: none;
+        }
+
+        button.main-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4);
+        }
+
+        button.main-btn:hover { transform: translateY(-3px); background: #c9184a; }
+
+        /* Surprise Section */
+        #surprise-section { display: none; animation: fadeIn 1.5s ease; }
+
+        .gallery { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); 
+            gap: 15px; 
+            margin-top: 25px; 
+        }
+        
+        .gallery img { 
+            width: 100%; 
+            height: 180px; 
+            object-fit: cover; 
+            border-radius: 15px; 
+            border: 4px solid white; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+    <!-- موسيقى الخلفية الافتراضية - يمكنك استبدال الرابط بأي أغنية MP3 تريدها -->
+    <audio id="bg-music" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="container">
+        <!-- Quiz Section -->
+        <div id="quiz-card">
+            <h1>Our Story Quiz</h1>
+            <p style="margin-bottom: 20px;">جاوبي صح عشان تشوفي المفاجأة 😉</p>
+
+            <!-- Question 1 -->
+            <div class="question-box">
+                <p class="q-text">1. لو لقيتي شنطة فيها مليون دولار، بس بشرط تسلميني للشرطة بتهمة "إني سرقت قلبك".. هتختاري إيه؟</p>
+                <select id="q1">
+                    <option value="">اكتبي قرارك المصيري..</option>
+                    <option value="a">أ- طبعاً هختارك يا حبيبي (والمليون يروح لحاله)</option>
+                    <option value="b">ب- هاخد المليون وأجيلك القسم بالمرسيدس</option>
+                    <option value="c">ج- هروح آكل شاورما عشان الضغط</option>
+                </select>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="question-box">
+                <p class="q-text">2. لو بقيتي ملكة جمال العالم بشرط يوسف يصحى يلاقي نفسه "كرنب" (محشي).. هتختاري إيه؟</p>
+                <select id="q2">
+                    <option value="">اختاري يا فوزية..</option>
+                    <option value="a">أ- يوسف طبعاً، الجمال مش كل حاجة</option>
+                    <option value="b">ب- هبقى ملكة جمال وأعملك أحسن حلة محشي</option>
+                    <option value="c">ج- نتحول إحنا الاتنين كرنب عشان نفضل مع بعض</option>
+                </select>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="question-box">
+                <p class="q-text">3. لو طلبنا آخر ساندوتش برجر غرقان صوص وإنتي جعانة جداً.. هتعملي إيه؟</p>
+                <select id="q3">
+                    <option value="">البرجر ولا يوسف?</option>
+                    <option value="a">أ- هديك الساندوتش كله وأنا أشبع برؤيتك</option>
+                    <option value="b">ب- هنقسمه بالنص (بس النص الكبير ليا)</option>
+                    <option value="c">ج- هاكله بسرعة.. الحب مش بالأكل يا يوسف</option>
+                </select>
+            </div>
+
+            <button class="main-btn" onclick="validateQuiz()">افتحي المفاجأة ✨</button>
+        </div>
+
+        <!-- Surprise Section -->
+        <div id="surprise-section">
+            <h1 style="font-size: 3rem;">Happy Birthday! 🎂❤️</h1>
+            <p style="font-size: 1.2rem; margin: 20px 0; line-height: 1.8;">
+                عارف إنك اخترتي "أ" بالعافية بس مش مشكلة.. 😂<br>
+                كل سنة وإنتي منورة حياتي يا أحلى حاجة حصلت لي في الدنيا! 
+            </p>
+            
+            <!-- الجاليري بالروابط المباشرة لصوركم الحقيقية -->
+            <div class="gallery">
+                <img src="https://i.postimg.cc/Nj0HjH2X/1.jpg" alt="Memory 1">
+                <img src="https://i.postimg.cc/qvs6R10X/2.jpg" alt="Memory 2">
+                <img src="https://i.postimg.cc/K8L9W0Xz/3.jpg" alt="Memory 3">
+                <img src="https://i.postimg.cc/C1XvXQp6/4.jpg" alt="Memory 4">
+                <img src="https://i.postimg.cc/W3p8X8m1/5.jpg" alt="Memory 5">
+                <img src="https://i.postimg.cc/Vv3xXq0C/6.jpg" alt="Memory 6">
+                <img src="https://i.postimg.cc/02WbX6Z6/7.jpg" alt="Memory 7">
+                <img src="https://i.postimg.cc/9F2cW2q1/8.jpg" alt="Memory 8">
+                <img src="https://i.postimg.cc/g0M2yX1D/9.jpg" alt="Memory 9">
+                <img src="https://i.postimg.cc/mD8Xb2Tf/10.jpg" alt="Memory 10">
+                <img src="https://i.postimg.cc/Y92Wq8X4/11.jpg" alt="Memory 11">
+                <img src="https://i.postimg.cc/c4XvXp6b/12.jpg" alt="Memory 12">
+            </div>
+            
+            <p style="margin-top: 40px; font-weight: bold; font-size: 1.5rem; color: var(--primary);">بحبك قد الدنيا كلها! 💍✨</p>
+        </div>
+    </div>
+
+    <script>
+        function validateQuiz() {
+            const q1 = document.getElementById('q1').value;
+            const q2 = document.getElementById('q2').value;
+            const q3 = document.getElementById('q3').value;
+
+            // التحقق من الإجابات الفخاخ
+            if (q1 !== 'a' && q1 !== '') {
+                alert("أنا عارف إن ده حقيقي بس عايزك تختاريني! ركزييي 😂 😂");
+                return;
+            }
+
+            if (q2 !== 'a' && q2 !== '') {
+                alert("بقولك اختارييينييييي! 😡 محشي إيه اللي عايزة تاكليه؟");
+                return;
+            }
+
+            if (q3 !== 'a' && q3 !== '') {
+                alert("يعني هتسيبيني جعان؟ 🤦🥲 اخص عليكي!");
+                return;
+            }
+
+            // التحقق من الاكتمال والنجاح
+            if (q1 === 'a' && q2 === 'a' && q3 === 'a') {
+                launchSurprise();
+            } else {
+                alert("جاوبي على كل الأسئلة الأول يا ست الكل! 🙄");
+            }
+        }
+
+        function launchSurprise() {
+            document.getElementById('quiz-card').style.display = 'none';
+            document.getElementById('surprise-section').style.display = 'block';
+            
+            // تشغيل الموسيقى
+            const music = document.getElementById('bg-music');
+            music.play().catch(error => console.log("المتصفح حظر التشغيل التلقائي حتى الآن"));
+            
+            // البوب أب النهائي الهزلي
+            alert("ركزززززي عشان هقل أدبي عليكي! قصدي.. مبروك نجحتي في الاختبار وعبرتي لقلبي بنجاح ❤️");
+            createConfetti();
+        }
+
+        // تأثير تساقط القلوب
+        function createConfetti() {
+            for(let i=0; i<40; i++) {
+                const confetti = document.createElement('div');
+                confetti.innerText = "❤️";
+                confetti.style.position = 'fixed';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.top = '-20px';
+                confetti.style.fontSize = Math.random() * 20 + 15 + 'px';
+                confetti.style.animation = `fall ${Math.random() * 3 + 2}s linear forwards`;
+                confetti.style.zIndex = '999';
+                document.body.appendChild(confetti);
+            }
+        }
+    </script>
+
+    <style>
+        @keyframes fall {
+            to { transform: translateY(105vh) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</body>
+</html>
