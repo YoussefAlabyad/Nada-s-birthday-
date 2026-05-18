@@ -91,20 +91,10 @@
             gap: 20px;
         }
 
-        /* شريط 1 يتحرك لليسار */
-        .track-left {
-            animation: scrollLeft 30s linear infinite;
-        }
+        .track-left { animation: scrollLeft 30s linear infinite; }
+        .track-right { animation: scrollRight 30s linear infinite; }
 
-        /* شريط 2 يتحرك لليمين */
-        .track-right {
-            animation: scrollRight 30s linear infinite;
-        }
-
-        /* يوقف الحركة عند اللمس */
-        .carousel-track:hover {
-            animation-play-state: paused;
-        }
+        .carousel-track:hover { animation-play-state: paused; }
 
         .gallery-card {
             width: 150px;
@@ -125,14 +115,12 @@
             border-radius: 8px;
         }
 
-        /* تأثير التكبير عند اللمس */
         .gallery-card:hover {
             transform: scale(1.25) translateY(-10px);
             z-index: 99;
             box-shadow: 0 20px 40px rgba(0,0,0,0.25);
         }
 
-        /* أنيميشن الحركة اللانهائية */
         @keyframes scrollLeft {
             0% { transform: translateX(0); }
             100% { transform: translateX(calc(-50%)); }
@@ -144,14 +132,21 @@
         }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* إخفاء مشغل اليوتيوب تماماً عشان ما يبانش في الصفحة */
+        #yt-player {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            opacity: 0;
+            pointer-events: none;
+        }
     </style>
 </head>
 <body>
 
-    <!-- تم تحديث رابط أغنية بهاء سلطان وتثبيت البدء التلقائي من الثانية 24 -->
-    <audio id="bg-music" loop>
-        <source src="https://assets.mixkit.co/music/preview/mixkit-serene-view-443.mp3#t=24" type="audio/mpeg">
-    </audio>
+    <!-- مشغل اليوتيوب المخفي في الخلفية -->
+    <div id="yt-player"></div>
 
     <div class="container">
         <!-- Quiz Section -->
@@ -178,7 +173,7 @@
             </div>
 
             <div class="question-box">
-                <p class="q-text">2. لو بقيتي ملكة جمال العالم بشرط يوسف يصحى يلاقي نفسه "كرنب" (محشي).. هتختاري إي��؟</p>
+                <p class="q-text">2. لو بقيتي ملكة جمال العالم بشرط يوسف يصحى يلاقي نفسه "كرنب" (محشي).. هتختاري إيه؟</p>
                 <div class="options-container">
                     <label class="option-label">
                         <input type="radio" name="q2" value="a">
@@ -226,7 +221,6 @@
             </p>
             
             <div class="carousel-wrapper">
-                
                 <!-- الصف الأول -->
                 <div class="carousel-track track-left">
                     <div class="gallery-card"><img src="https://i.postimg.cc/Gm83027v/0B25DEA9-BF2B-4452-A52A-BC01F01CF4D2.jpg" alt="1"></div>
@@ -236,7 +230,7 @@
                     <div class="gallery-card"><img src="https://i.postimg.cc/t4Kq9jwk/IMG-5565.jpg" alt="5"></div>
                     <div class="gallery-card"><img src="https://i.postimg.cc/0yM5gQWb/IMG-5686.jpg" alt="6"></div>
                     <div class="gallery-card"><img src="https://i.postimg.cc/J7xzZSH7/IMG-5831.jpg" alt="7"></div>
-                    <!-- التكرار لحركة لانهائية -->
+                    <!-- التكرار -->
                     <div class="gallery-card"><img src="https://i.postimg.cc/Gm83027v/0B25DEA9-BF2B-4452-A52A-BC01F01CF4D2.jpg" alt="1"></div>
                     <div class="gallery-card"><img src="https://i.postimg.cc/prRyRH9c/1AA48233-0D8B-41A8-A9B1-8D1E6E3D4CF2.jpg" alt="2"></div>
                     <div class="gallery-card"><img src="https://i.postimg.cc/mkLZKyJR/e33471b4-d298-49f7-b0a7-045f78cfb528.jpg" alt="3"></div>
@@ -250,28 +244,49 @@
                 <div class="carousel-track track-right">
                     <div class="gallery-card"><img src="https://i.postimg.cc/NGDjmZ2Q/IMG-5924.jpg" alt="8"></div>
                     <div class="gallery-card"><img src="https://i.postimg.cc/prsVvnMW/IMG-5947.jpg" alt="9"></div>
-                    <div class="gallery-card"><img src="https://i.postimg.cc/B6GnB0C4/IMG-5997.jpg" alt="10"></div>
+                    <div class="gallery-card"><img src="https://i.postimg.cc/B6GnB04C/IMG-5997.jpg" alt="10"></div>
                     <div class="gallery-card"><img src="https://i.postimg.cc/gJP2HWKJ/IMG-6197.jpg" alt="11"></div>
                     <div class="gallery-card"><img src="https://i.postimg.cc/B6GnB0CQ/IMG-6334.jpg" alt="12"></div>
                     <div class="gallery-card"><img src="https://i.postimg.cc/BvFvF62Z/IMG-6395.jpg" alt="13"></div>
                     <div class="gallery-card"><img src="https://i.postimg.cc/K88vqz2g/AC91E0EA-261F-4436-AFB3-08FF54ADBD79.jpg" alt="14"></div>
-                    <!-- التكرار لحركة لانهائية -->
+                    <!-- التكرار -->
                     <div class="gallery-card"><img src="https://i.postimg.cc/NGDjmZ2Q/IMG-5924.jpg" alt="8"></div>
                     <div class="gallery-card"><img src="https://i.postimg.cc/prsVvnMW/IMG-5947.jpg" alt="9"></div>
-                    <div class="gallery-card"><img src="https://i.postimg.cc/B6GnB0C4/IMG-5997.jpg" alt="10"></div>
+                    <div class="gallery-card"><img src="https://i.postimg.cc/B6GnB04C/IMG-5997.jpg" alt="10"></div>
                     <div class="gallery-card"><img src="https://i.postimg.cc/gJP2HWKJ/IMG-6197.jpg" alt="11"></div>
                     <div class="gallery-card"><img src="https://i.postimg.cc/B6GnB0CQ/IMG-6334.jpg" alt="12"></div>
                     <div class="gallery-card"><img src="https://i.postimg.cc/BvFvF62Z/IMG-6395.jpg" alt="13"></div>
                     <div class="gallery-card"><img src="https://i.postimg.cc/K88vqz2g/AC91E0EA-261F-4436-AFB3-08FF54ADBD79.jpg" alt="14"></div>
                 </div>
-
             </div>
             
             <p style="margin-top: 40px; font-weight: bold; font-size: 1.5rem; color: var(--primary); animation: fadeIn 2s ease;">بحبك قد الدنيا كلها! 💍✨</p>
         </div>
     </div>
 
+    <!-- استدعاء مكتبة يوتيوب الرسمية للتشغيل المضمون -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+
     <script>
+        let player;
+
+        // تجهيز مشغل اليوتيوب بالأغنية والبدء من الثانية 24
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('yt-player', {
+                height: '1',
+                width: '1',
+                videoId: 'HVgy8Ge0GJQ', // معرف الأغنية الخاصة ببهاء سلطان من الرابط بتاعك
+                playerVars: {
+                    'start': 24,        // يبدأ من الثانية 24 بالظبط
+                    'loop': 1,          // تكرار مستمر
+                    'playlist': 'HVgy8Ge0GJQ',
+                    'controls': 0,      // إخفاء أزرار التحكم
+                    'showinfo': 0,
+                    'rel': 0
+                }
+            });
+        }
+
         function checkInstantRoute(radioElement, alertMessage) {
             if (radioElement.checked) {
                 alert(alertMessage);
@@ -298,9 +313,11 @@
             document.getElementById('quiz-card').style.display = 'none';
             document.getElementById('surprise-section').style.display = 'block';
             
-            const music = document.getElementById('bg-music');
-            music.currentTime = 24; // يضمن بدء الأغنية من الثانية 24 بالضبط
-            music.play().catch(error => console.log("المتصفح حظر التشغيل التلقائي"));
+            // تشغيل الأغنية برمجياً بعد تفاعل المستخدم (الضغط على الزرار) ليتخطى حظر المتصفحات
+            if (player && typeof player.playVideo === 'function') {
+                player.seekTo(24, true);
+                player.playVideo();
+            }
             
             alert("ركزززززي عشان هقل أدبي عليكي! قصدي.. مبروك نجحتي في الاختبار وعبرتي لقلبي بنجاح ❤️");
             createConfetti();
