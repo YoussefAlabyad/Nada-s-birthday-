@@ -434,6 +434,25 @@
     </div>
 
     <script>
+                // دالة إعادة تهيئة الصفحة من البداية تماماً أول ما تفتح
+        window.onload = function() {
+            // 1. مسح أي اختيارات قديمة في الكويز
+            const allInputs = document.querySelectorAll('input[type="radio"]');
+            allInputs.forEach(input => input.checked = false);
+
+            // 2. تصفير مشغل الصوت والتأكد إنه هيبدأ من الأول
+            if (audioEl) {
+                audioEl.pause();
+                audioEl.currentTime = 0;
+            }
+
+            // 3. التأكد إن كارت الأسئلة هو اللي ظاهر والمفاجأة مخفية
+            document.getElementById('quiz-card').style.display = 'block';
+            document.getElementById('surprise-section').style.display = 'none';
+            
+            console.log("تمت إعادة تهيئة الصفحة بنجاح.. ابدأ من جديد! 😉");
+        };
+        
         let isSuccessPopup = false;
         const audioEl = document.getElementById('myAudio');
         let isAudioWarmed = false;
