@@ -518,26 +518,25 @@
         }
 
         function validateQuiz() {
-            const q1 = document.querySelector('input[name="q1"]:checked');
-            const q2 = document.querySelector('input[name="q2"]:checked');
-            const q3 = document.querySelector('input[name="q3"]:checked');
+    const q1 = document.querySelector('input[name="q1"]:checked');
+    const q2 = document.querySelector('input[name="q2"]:checked');
+    const q3 = document.querySelector('input[name="q3"]:checked');
 
-            if (!q1 || !q2 || !q3) {
-                showCustomModal("لازم تجاوبي على الـ 3 أسئلة وتختاريني فيهم كلهم الأول! 🙄❤️", false);
-                return;
-            }
+    if (!q1 || !q2 || !q3) {
+        showCustomModal("لازم تجاوبي على الـ 3 أسئلة وتختاريني فيهم كلهم الأول! 🙄❤️", false);
+        return;
+    }
 
-            if (q1.value === 'a' && q2.value === 'a' && q3.value === 'a') {
-                if (audioEl) {
-                    audioEl.currentTime = 16; // البداية من الثانية 16 بالظبط
-                    var playPromise = audioEl.play();
-                    if (playPromise !== undefined) {
-                        playPromise.catch(error => console.log("iOS Playback restriction override", error));
-                    }
-                }
-                launchSurprise();
-            }
+    if (q1.value === 'a' && q2.value === 'a' && q3.value === 'a') {
+        // هنا الكود بيشغل الأغنية من الثانية 16 أول ما تدوس على الزرار وتعدي الكويز
+        if (audioEl) {
+            audioEl.currentTime = 16; 
+            audioEl.play().catch(error => console.log("iOS Block Handle", error));
         }
+        launchSurprise();
+    }
+}
+
 
         function launchSurprise() {
             showCustomModal("اه وجعتيني ههه بهزر ♥️😂", true);
@@ -570,6 +569,20 @@
                 setTimeout(() => confetti.remove(), 5000);
             }
         }
+        window.onload = function() {
+    const allInputs = document.querySelectorAll('input[type="radio"]');
+    allInputs.forEach(input => input.checked = false);
+
+    // السطرين دول هما اللي بيكتموا الصوت تماماً في أول صفحة
+    if (audioEl) {
+        audioEl.pause();
+        audioEl.currentTime = 0;
+    }
+
+    document.getElementById('quiz-card').style.display = 'block';
+    document.getElementById('surprise-section').style.display = 'none';
+};
+        
     </script>
 
     <style>
