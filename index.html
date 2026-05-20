@@ -291,15 +291,15 @@
     <!-- قلوب الخلفية المتساقطة -->
     <div class="background-hearts" id="heartsContainer"></div>
 
-    <!-- مشغل الصوت المباشر (HTML5 Audio) - الحل النهائي والأقوى لجدار حماية الآيفون -->
-    <!-- غير الرابط بالأسفل برابط ملف الـ mp3 الخاص بأغنيتكم المرفوع على جيت هاب أو أي سيرفر -->
-    <audio id="myAudio" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" preload="auto" loop></audio>
+    <!-- مشغل الصوت المحلي الحاسم لحماية الآيفون -->
+    <!-- يرجى تسمية ملف الأغنية بـ song.mp3 ووضعه بجانب هذا الملف في الـ GitHub -->
+    <audio id="myAudio" src="song.mp3" preload="auto" loop playsinline></audio>
 
     <!-- التنبيهات الداخلية المخصصة للموقع -->
     <div class="custom-modal" id="customAlert">
         <div class="modal-card">
             <p class="modal-text" id="alertMessage">الرسالة هنا</p>
-            <button class="modal-btn" id="modalCloseBtn" onclick="closeModal()">حاضر ❤️</button>
+            <button class="modal-btn" id="modalCloseBtn" onclick="closeModal()">أدخل لقلب يوسف بقا 🥰❤️</button>
         </div>
     </div>
 
@@ -310,6 +310,166 @@
 
             <div class="question-box">
                 <p class="q-text">1. لو لقيتي شنطة فيها مليون دولار، بس بشرط تسلميني للشرطة بتهمة "إني سرقت قلبك".. هتختاري إيه؟</p>
+                <div class="options-container">
+                    <label class="option-label">
+                        <input type="radio" name="q1" value="a">
+                        <span>أ- طبعاً هختارك يا حبيبي (والمليون يروح لحاله)</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q1" value="b" onchange="triggerWrongAnswer('أنا عارف إن ده حقيقي بس عايزك تختاريني! ركزييي 😂 😂', this)">
+                        <span>ب- هاخد المليون وأجيلك القسم بالمرسيدس</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q1" value="c" onchange="triggerWrongAnswer('أنا عارف إن ده حقيقي بس عايزك تختاريني! ركزييي 😂 😂', this)">
+                        <span>ج- هروح آكل شاورما عشان الضغط</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="question-box">
+                <p class="q-text">2. لو بقيتي ملكة جمال العالم بشرط يوسف يصحى يلاقي نفسه "كرنب" (محشي).. هتختاري إيه؟</p>
+                <div class="options-container">
+                    <label class="option-label">
+                        <input type="radio" name="q2" value="a">
+                        <span>أ- يوسف طبعاً، الجمال مش كل حاجة</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q2" value="b" onchange="triggerWrongAnswer('بقولك اختارييينييييي! 😡 محشي إيه اللي عايزة تاكليه؟', this)">
+                        <span>ب- هبقى ملكة جمال وأعملك أحسن حلة محشي</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q2" value="c" onchange="triggerWrongAnswer('بقولك اختارييينييييي! 😡 محشي إيه اللي عايزة تاكليه؟', this)">
+                        <span>ج- نتحول إحنا الاتنين كرنب عشان نفضل مع بعض</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="question-box">
+                <p class="q-text">3. لو طلبنا آخر ساندوتش برجر غرقان صوص وإنتي جعانة جداً.. هتعملي إيه؟</p>
+                <div class="options-container">
+                    <label class="option-label">
+                        <input type="radio" name="q3" value="a">
+                        <span>أ- هديك الساندوتش كله وأنا أشبع برؤيتك</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q3" value="b" onchange="triggerWrongAnswer('يعني هتسيبيني جعان؟ 🤦🥲 اخص عليكي!', this)">
+                        <span>ب- هنقسمه بالنص (بس النص الكبير ليا)</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q3" value="c" onchange="triggerWrongAnswer('يعني هتسيبيني جعان؟ 🤦🥲 اخص عليكي!', this)">
+                        <span>ج- هاكله بسرعة.. الحب مش بالأكل يا يوسف</span>
+                    </label>
+                </div>
+            </div>
+
+            <button class="main-btn" onclick="validateQuiz()">دوسي هنا ♥️</button>
+        </div>
+
+        <!-- Surprise Section -->
+        <div id="surprise-section">
+            <h1 style="font-size: 2.2rem; font-family: 'Amiri', serif; font-style: italic; color: var(--primary); margin-bottom: 5px;">كل عام وانتي حياتي يا حياتي ♥️😘</h1>
+            <p style="font-size: 1.05rem; margin-bottom: 25px; font-weight: bold; color: #6b4c51;">(اضغطي على أي صورة عشان تشوفيها كاملة بوضوح 😉)</p>
+            
+            <div class="gallery-container">
+                <div class="gallery-card" onclick="openLightbox(this)">
+                    <div class="img-wrapper"><img src="https://i.postimg.cc/Gm83027v/0B25DEA9-BF2B-4452-A52A-BC01F01CF4D2.jpg" alt="1" loading="lazy"></div>
+                    <div class="caption">اول مقابله لينا بعد صبر كتييير 😂❤️</div>
+                </div>
+                <div class="gallery-card" onclick="openLightbox(this)">
+                    <div class="img-wrapper"><img src="https://i.postimg.cc/prRyRH9c/1AA48233-0D8B-41A8-A9B1-8D1E6E3D4CF2.jpg" alt="2" loading="lazy"></div>
+                    <div class="caption">اخر مقابله بينا ولنا عوده ♥️🫂</div>
+                </div>
+                <div class="gallery-card" onclick="openLightbox(this)">
+                    <div class="img-wrapper"><img src="https://i.postimg.cc/mkLZKyJR/e33471b4-d298-49f7-b0a7-045f78cfb528.jpg" alt="3" loading="lazy"></div>
+                    <div class="caption">احلى يوم في حياتي ♥️</div>
+                </div>
+                <div class="gallery-card" onclick="openLightbox(this)">
+                    <div class="img-wrapper"><img src="https://i.postimg.cc/6QC93Pxm/IMG-5487.jpg" alt="4" loading="lazy"></div>
+                    <div class="caption">احلى كوكيز دوقتها اليوم ده 🤤💗</div>
+                </div>
+                <div class="gallery-card" onclick="openLightbox(this)">
+                    <div class="img-wrapper"><img src="https://i.postimg.cc/t4Kq9jwk/IMG-5565.jpg" alt="5" loading="lazy"></div>
+                    <div class="caption">اكتر يوم دفعت فيه بس مش خسارة فيكي الدنيا بحالها ♥️</div>
+                </div>
+                <div class="gallery-card" onclick="openLightbox(this)">
+                    <div class="img-wrapper"><img src="https://i.postimg.cc/0yM5gQWb/IMG-5686.jpg" alt="6" loading="lazy"></div>
+                    <div class="caption">احلى فطيرة سجق كيري 😂😂❤️</div>
+                </div>
+                <div class="gallery-card" onclick="openLightbox(this)">
+                    <div class="img-wrapper"><img src="https://i.postimg.cc/J7xzZSH7/IMG-5831.jpg" alt="7" loading="lazy"></div>
+                    <div class="caption">اول صورة ف ديفاكتو عقبال ما نشتري منه 😂😂😂</div>
+                </div>
+                <div class="gallery-card" onclick="openLightbox(this)">
+                    <div class="img-wrapper"><img src="https://i.postimg.cc/NGDjmZ2Q/IMG-5924.jpg" alt="8" loading="lazy"></div>
+                    <div class="caption">جرينا جري اليوم ده 🥵</div>
+                </div>
+                <div class="gallery-card" onclick="openLightbox(this)">
+                    <div class="img-wrapper"><img src="https://i.postimg.cc/prsVvnMW/IMG-5947.jpg" alt="9" loading="lazy"></div>
+                    <div class="caption">اول مره اشوف قشطوطة بتعمل قشطوطة 🤤</div>
+                </div>
+                <div class="gallery-card" onclick="openLightbox(this)">
+                    <div class="img-wrapper"><img src="https://i.postimg.cc/B6GnB04C/IMG-5997.jpg" alt="10" loading="lazy"></div>
+                    <div class="caption">احلى حاجة ف حياتي ❤️</div>
+                </div>
+                <!-- تعديل العبارات الأربعة الجديدة بناء على طلبك بدقة متناهية -->
+                <div class="gallery-card" onclick="openLightbox(this)">
+                    <div class="img-wrapper"><img src="https://i.postimg.cc/gJP2HWKJ/IMG-6197.jpg" alt="11" loading="lazy"></div>
+                    <div class="caption">الحسين والي منها 😂♥️</div>
+                </div>
+                <div class="gallery-card" onclick="openLightbox(this)">
+                    <div class="img-wrapper"><img src="https://i.postimg.cc/B6GnB0CQ/IMG-6334.jpg" alt="12" loading="lazy"></div>
+                    <div class="caption">تاني صورة في ديفاكتو يارب نشتري😂😂</div>
+                </div>
+                <div class="gallery-card" onclick="openLightbox(this)">
+                    <div class="img-wrapper"><img src="https://i.postimg.cc/BvFvF62Z/IMG-6395.jpg" alt="13" loading="lazy"></div>
+                    <div class="caption">اول صورة ف LC بدانا ننضف 😂😂</div>
+                </div>
+                <div class="gallery-card" onclick="openLightbox(this)">
+                    <div class="img-wrapper"><img src="https://i.postimg.cc/K88vqz2g/AC91E0EA-261F-4436-AFB3-08FF54ADBD79.jpg" alt="14" loading="lazy"></div>
+                    <div class="caption">الحلاوة دي كلها ليا انا 🫂♥️</div>
+                </div>
+            </div>
+            
+            <div class="final-letter-card">
+                حاولت اجمع صورة من كل خروجة او يوم جمعنا سوا ولسه قدامنا ايام وخروجات وصور كتير ناخدها سوا ولسه قدامنا ذكريات كتير نعملها وربنا يباركلنا ف بعض لاخر العمر يارب كل سنة وانتي طيبة يا حبيبتي واول عيد ميلاد ليكي واحنا مع بعض ومش اخر عيد ميلاد لاخر العمر سوا بإذن الله ويارب تكون سنة حلوة عليكي وتحققي الي نفسك فيه يارب بحبك ♥️
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة الـ Lightbox المكبرة السينمائية -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <button class="lightbox-close">&times;</button>
+        <img class="lightbox-content" id="lightbox-img" src="" alt="">
+        <div class="lightbox-caption" id="lightbox-caption"></div>
+    </div>
+
+    <script>
+        let isSuccessPopup = false;
+        const audioEl = document.getElementById('myAudio');
+
+        // قلوب الخلفية المتساقطة
+        function createBackgroundHearts() {
+            const container = document.getElementById('heartsContainer');
+            const heartTypes = ['❤️', '💖', '✨'];
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.classList.add('bg-heart');
+                heart.innerText = heartTypes[Math.floor(Math.random() * heartTypes.length)];
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = Math.random() * 3 + 4 + 's';
+                heart.style.fontSize = Math.random() * 15 + 15 + 'px';
+                container.appendChild(heart);
+                setTimeout(() => heart.remove(), 7000);
+            }, 600);
+        }
+        createBackgroundHearts();
+
+        function showCustomModal(message, isSuccess = false) {
+            document.getElementById('alertMessage').innerText = message;
+            document.getElementById('customAlert').style.display = 'flex';
+            isSuccessPopup = isSuccess;
+            
+            const btn = document.تختاري إيه؟</p>
                 <div class="options-container">
                     <label class="option-label">
                         <input type="radio" name="q1" value="a">
@@ -1394,22 +1554,32 @@
         }
 
         // التحقق من صحة الإجابات وتشغيل المفاجأة
-        function validateQuiz() {
+                function validateQuiz() {
             const q1 = document.querySelector('input[name="q1"]:checked');
             const q2 = document.querySelector('input[name="q2"]:checked');
             const q3 = document.querySelector('input[name="q3"]:checked');
 
             if (!q1 || !q2 || !q3) {
-                showCustomModal("لازم تجاوبي على الـ 3 أسئلة وتختاريني فيهم كلهم الأول! 🙄❤️");
+                showCustomModal("لازم تجاوبي على الـ 3 أسئلة وتختاريني فيهم كلهم الأول! 🙄❤️", false);
                 return;
             }
 
             if (q1.value === 'a' && q2.value === 'a' && q3.value === 'a') {
+                // التعديل هنا: الصوت هيبدأ من الثانية 16 بالظبط أول ما تنجح في الكويز
+                if (audioEl) {
+                    audioEl.currentTime = 16; 
+                    var playPromise = audioEl.play();
+                    
+                    if (playPromise !== undefined) {
+                        playPromise.catch(error => {
+                            console.log("Playback engine waiting for interaction override", error);
+                        });
+                    }
+                }
                 launchSurprise();
-            } else {
-                showCustomModal("هممم.. إجابات خاطئة! حاولي تاني وركزي أكتر على اللي في قلبي! 💔");
             }
         }
+
 
         function launchSurprise() {
             document.getElementById('quiz-card').style.display = 'none';
