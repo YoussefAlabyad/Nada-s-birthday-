@@ -541,6 +541,13 @@
 
         function launchSurprise() {
             showCustomModal("اه وجعتيني ههه بهزر ♥️😂", true);
+            // هنخلي الصفحة تطلع فوق خالص بعد ما كل حاجة في الصفحة التانية تحمل تماماً
+setTimeout(function() {
+    window.scrollTo(0, 0);
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}, 100);
+        
         }
 
         function openLightbox(cardElement) {
