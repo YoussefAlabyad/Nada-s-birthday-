@@ -530,7 +530,7 @@
     if (q1.value === 'a' && q2.value === 'a' && q3.value === 'a') {
         // هنا الكود بيشغل الأغنية من الثانية 16 أول ما تدوس على الزرار وتعدي الكويز
         if (audioEl) {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            window.scrollTo(0, 0);
             audioEl.currentTime = 16; 
             audioEl.play().catch(error => console.log("iOS Block Handle", error));
         }
