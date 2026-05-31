@@ -44,6 +44,20 @@
             100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
         }
 
+        /* تأثير انفجار القلوب الصغيرة عند الإجابة الصح */
+        .burst-heart {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1000;
+            animation: heartBurst 0.8s ease-out forwards;
+            font-size: 15px;
+        }
+
+        @keyframes heartBurst {
+            0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+            100% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; }
+        }
+
         .container { 
             max-width: 650px; 
             margin: auto; 
@@ -94,16 +108,16 @@
             border-radius: 14px;
             border: 2px solid #f0e2e4;
             cursor: pointer;
-            transition: all 0.25s ease;
+            transition: all 0.25s ease, top 0.2s ease-out, left 0.2s ease-out; /* إضافة تأثير انسيابي للهروب */
             font-size: 1rem;
             line-height: 1.5;
             font-weight: 600;
+            position: relative; /* مهم جداً لعملية الهروب */
         }
 
         .option-label:hover { 
             background: var(--light-bg); 
             border-color: var(--secondary);
-            transform: translateX(-5px);
         }
 
         .option-label input { 
@@ -115,21 +129,34 @@
         }
 
         button.main-btn {
-            background: var(--primary);
-            color: white;
+            background: #ccc; /* لون رمادي مغلق في البداية */
+            color: #666;
             border: none;
             padding: 16px 40px;
             border-radius: 50px;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: bold;
-            cursor: pointer;
+            cursor: not-allowed;
             transition: all 0.3s ease;
-            box-shadow: 0 8px 20px rgba(255, 77, 109, 0.35);
+            box-shadow: none;
             width: 100%;
             margin-top: 10px;
         }
 
-        button.main-btn:hover { transform: translateY(-3px); background: var(--primary-hover); box-shadow: 0 12px 25px rgba(255, 77, 109, 0.5); }
+        /* الستايل النشط عند اكتمال العداد الحماسي للإجابات الصح */
+        button.main-btn.active {
+            background: var(--primary);
+            color: white;
+            cursor: pointer;
+            font-size: 1.3rem;
+            box-shadow: 0 8px 20px rgba(255, 77, 109, 0.35);
+        }
+
+        button.main-btn.active:hover { 
+            transform: translateY(-3px); 
+            background: var(--primary-hover); 
+            box-shadow: 0 12px 25px rgba(255, 77, 109, 0.5); 
+        }
 
         #surprise-section { display: none; animation: fadeIn 1s ease; }
 
@@ -302,14 +329,15 @@
                 <p class="q-text">1. لو لقيتي شنطة فيها مليون دولار، بس بشرط تسلميني للشرطة بتهمة "إني سرقت قلبك".. هتختاري إيه؟</p>
                 <div class="options-container">
                     <label class="option-label">
-                        <input type="radio" name="q1" value="a" onchange="iosVoiceWarmup()">
+                        <input type="radio" name="q1" value="a" onchange="iosVoiceWarmup(); correctAction(this);">
                         <span>أ- طبعاً هختارك يا حبيبي (والمليون يروح لحاله)</span>
                     </label>
-                    <label class="option-label">
+                    <!-- إضافة تأثير الهروب الذكي للإجابات الغلط عن طريق الماوس أو اللمس -->
+                    <label class="option-label" onmouseover="elusiveButton(this)" ontouchstart="elusiveButton(this)">
                         <input type="radio" name="q1" value="b" onchange="triggerWrongAnswer('أنا عارف إن ده حقيقي بس عايزك تختاريني! ركزييي 😂 😂', this)">
                         <span>ب- هاخد المليون وأجيلك القسم بالمرسيدس</span>
                     </label>
-                    <label class="option-label">
+                    <label class="option-label" onmouseover="elusiveButton(this)" ontouchstart="elusiveButton(this)">
                         <input type="radio" name="q1" value="c" onchange="triggerWrongAnswer('تنسيني بشاورما 🥲', this)">
                         <span>ج- هروح آكل شاورما عشان الضغط</span>
                     </label>
@@ -320,14 +348,14 @@
                 <p class="q-text">2. لو بقيتي ملكة جمال العالم بشرط يوسف يصحى يلاقي نفسه "كرنب" (محشي).. هتختاري إيه؟</p>
                 <div class="options-container">
                     <label class="option-label">
-                        <input type="radio" name="q2" value="a" onchange="iosVoiceWarmup()">
+                        <input type="radio" name="q2" value="a" onchange="iosVoiceWarmup(); correctAction(this);">
                         <span>أ- يوسف طبعاً، الجمال مش كل حاجة</span>
                     </label>
-                    <label class="option-label">
+                    <label class="option-label" onmouseover="elusiveButton(this)" ontouchstart="elusiveButton(this)">
                         <input type="radio" name="q2" value="b" onchange="triggerWrongAnswer('بقولك اختارييينييييي! 😡 محشي إيه اللي عايزة تاكليه؟', this)">
                         <span>ب- هبقى ملكة جمال وأعملك أحسن حلة محشي</span>
                     </label>
-                    <label class="option-label">
+                    <label class="option-label" onmouseover="elusiveButton(this)" ontouchstart="elusiveButton(this)">
                         <input type="radio" name="q2" value="c" onchange="triggerWrongAnswer('لو كوسة بشاميل كنت وافقت', this)">
                         <span>ج- نتحول إحنا الاتنين كرنب عشان نفضل مع بعض</span>
                     </label>
@@ -338,21 +366,22 @@
                 <p class="q-text">3. لو طلبنا آخر ساندوتش برجر غرقان صوص وإنتي جعانة جداً.. هتعملي إيه؟</p>
                 <div class="options-container">
                     <label class="option-label">
-                        <input type="radio" name="q3" value="a" onchange="iosVoiceWarmup()">
+                        <input type="radio" name="q3" value="a" onchange="iosVoiceWarmup(); correctAction(this);">
                         <span>أ- هديك الساندوتش كله وأنا أشبع برؤيتك</span>
                     </label>
-                    <label class="option-label">
+                    <label class="option-label" onmouseover="elusiveButton(this)" ontouchstart="elusiveButton(this)">
                         <input type="radio" name="q3" value="b" onchange="triggerWrongAnswer('يعني هتسيبيني جعان؟ 🤦🥲 اخص عليكي!', this)">
                         <span>ب- هنقسمه بالنص (بس النص الكبير ليا)</span>
                     </label>
-                    <label class="option-label">
+                    <label class="option-label" onmouseover="elusiveButton(this)" ontouchstart="elusiveButton(this)">
                         <input type="radio" name="q3" value="c" onchange="triggerWrongAnswer('لا هو عندي ب الاكل', this)">
                         <span>ج- هاكله بسرعة.. الحب مش بالأكل يا يوسف</span>
                     </label>
                 </div>
             </div>
 
-            <button class="main-btn" onclick="validateQuiz()">دوسي هنا ♥️</button>
+            <!-- الزرار الكبير بعد تعديله للعداد الحماسي وقفل القفل 🔒 -->
+            <button class="main-btn" id="submit-btn" onclick="validateQuiz()">جاوبي الأول 🔒</button>
         </div>
 
         <!-- Surprise Section -->
@@ -402,7 +431,6 @@
                     <div class="caption">احلى حاجة ف حياتي ❤️</div>
                 </div>
                 
-                <!-- التعديلات الأربعة بالترتيب والمكان الصحيح بالظبط -->
                 <div class="gallery-card" onclick="openLightbox(this)">
                     <div class="img-wrapper"><img src="https://i.postimg.cc/gJP2HWKJ/IMG-6197.jpg" alt="11" loading="lazy"></div>
                     <div class="caption">الحسين والي منها 😂♥️</div>
@@ -434,28 +462,97 @@
     </div>
 
     <script>
-                // دالة إعادة تهيئة الصفحة من البداية تماماً أول ما تفتح
-        window.onload = function() {
-            // 1. مسح أي اختيارات قديمة في الكويز
-            const allInputs = document.querySelectorAll('input[type="radio"]');
-            allInputs.forEach(input => input.checked = false);
+        // تعريف المتغيرات الحاكمة في البداية
+        const audioEl = document.getElementById('myAudio');
+        const submitBtn = document.getElementById('submit-btn');
+        let isSuccessPopup = false;
+        let isAudioWarmed = false;
+        const totalQuestions = 3;
 
-            // 2. تصفير مشغل الصوت والتأكد إنه هيبدأ من الأول
+        // دالة إعادة تهيئة الصفحة الشاملة والوحيدة عند الفتح لمنع التكرار
+        window.onload = function() {
+            const allInputs = document.querySelectorAll('input[type="radio"]');
+            allInputs.forEach(input => {
+                input.checked = false;
+                // تصفير أي إزاحات هروب قديمة للأزرار
+                input.parentElement.style.top = '0px';
+                input.parentElement.style.left = '0px';
+            });
+
             if (audioEl) {
                 audioEl.pause();
                 audioEl.currentTime = 0;
             }
 
-            // 3. التأكد إن كارت الأسئلة هو اللي ظاهر والمفاجأة مخفية
             document.getElementById('quiz-card').style.display = 'block';
             document.getElementById('surprise-section').style.display = 'none';
             
             console.log("تمت إعادة تهيئة الصفحة بنجاح.. ابدأ من جديد! 😉");
+            updateSubmitButton(); // تحديث حالة الزرار الحماسي في البداية
         };
-        
-        let isSuccessPopup = false;
-        const audioEl = document.getElementById('myAudio');
-        let isAudioWarmed = false;
+
+        // دالة تحديث حالة ونص الزرار الحماسي الكبير (العداد الحماسي🔒)
+        function updateSubmitButton() {
+            const answeredCorrect = document.querySelectorAll('input[type="radio"][value="a"]:checked').length;
+            
+            if (answeredCorrect === totalQuestions) {
+                submitBtn.innerText = "أدخلي لقلبي الآن 🔓♥️";
+                submitBtn.classList.add('active');
+            } else {
+                submitBtn.innerText = `جاوبي صح (فاضل ${totalQuestions - answeredCorrect}) 🔒`;
+                submitBtn.classList.remove('active');
+            }
+        }
+
+        // دالة مجمعة للإجراءات عند الضغط على إجابة صحيحة (أ)
+        function correctAction(radioElement) {
+            updateSubmitButton();
+            createCorrectHeartBurst(radioElement);
+        }
+
+        // دالة تجعل الخيار الغلط يهرب بذكاء عند اقتراب الماوس أو اللمس 🏃‍♂️
+        function elusiveButton(element) {
+            // لو المستخدم علم بالفعل على الخيار الصح (أ) في نفس السؤال، لا يهرب الزرار الغلط
+            const hasCorrect = element.parentElement.querySelector('input[type="radio"][value="a"]:checked');
+            if (hasCorrect) return; 
+
+            const quizCard = document.getElementById('quiz-card');
+            const cardRect = quizCard.getBoundingClientRect();
+            const btnRect = element.getBoundingClientRect();
+
+            // حساب الحدود المتاحة للهروب بأمان داخل الكارد
+            const maxTop = cardRect.height - btnRect.height - 40; 
+            const maxLeft = cardRect.width - btnRect.width - 40;
+
+            const randomTop = Math.random() * maxTop;
+            const randomLeft = (Math.random() - 0.5) * 2 * maxLeft; // تضمن الهروب يمين ويسار
+
+            element.style.top = randomTop + 'px';
+            element.style.left = randomLeft + 'px';
+        }
+
+        // دالة توليد تأثير انفجار موجة قلوب صغيرة من مكان الإجابة الصح ✨
+        function createCorrectHeartBurst(element) {
+            const rect = element.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+
+            for (let i = 0; i < 15; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('burst-heart');
+                heart.innerText = '❤️';
+                heart.style.left = centerX + 'px';
+                heart.style.top = centerY + 'px';
+
+                const angle = Math.random() * Math.PI * 2;
+                const distance = 50 + Math.random() * 80;
+                heart.style.setProperty('--tx', `${Math.cos(angle) * distance}px`);
+                heart.style.setProperty('--ty', `${Math.sin(angle) * distance}px`);
+
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 800);
+            }
+        }
 
         // خدعة فك حظر الصوت المسبق للآيفون عند الضغط المبدئي
         function iosVoiceWarmup() {
@@ -509,45 +606,43 @@
                 document.getElementById('surprise-section').style.display = 'block';
                 createConfetti();
                 isSuccessPopup = false;
+                
+                // إجبار المتصفح على رفع الصفحة لأعلى تماماً بعد إغلاق بوب أب النجاح
+                setTimeout(() => {
+                    window.scrollTo(0, 0);
+                    document.body.scrollTop = 0;
+                    document.documentElement.scrollTop = 0;
+                }, 100);
             }
         }
 
         function triggerWrongAnswer(message, radioBtn) {
             showCustomModal(message, false);
             radioBtn.checked = false;
+            updateSubmitButton(); // تصفير وتحديث العداد تلقائياً عند الخطأ
         }
 
         function validateQuiz() {
-    const q1 = document.querySelector('input[name="q1"]:checked');
-    const q2 = document.querySelector('input[name="q2"]:checked');
-    const q3 = document.querySelector('input[name="q3"]:checked');
+            // حماية للزرار: لو العداد لم يكتمل تماماً يمنع المرور
+            if (!submitBtn.classList.contains('active')) {
+                showCustomModal("لازم تجاوبي على الـ 3 أسئلة وتختاريني فيهم كلهم الأول! 🙄❤️", false);
+                return;
+            }
 
-    if (!q1 || !q2 || !q3) {
-        showCustomModal("لازم تجاوبي على الـ 3 أسئلة وتختاريني فيهم كلهم الأول! 🙄❤️", false);
-        return;
-    }
-
-    if (q1.value === 'a' && q2.value === 'a' && q3.value === 'a') {
-        // هنا الكود بيشغل الأغنية من الثانية 16 أول ما تدوس على الزرار وتعدي الكويز
-        if (audioEl) {
+            // تصفير مسافة السكرول لأعلى تماماً قبل الانتقال
             window.scrollTo(0, 0);
-            audioEl.currentTime = 16; 
-            audioEl.play().catch(error => console.log("iOS Block Handle", error));
-        }
-        launchSurprise();
-    }
-}
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
 
+            if (audioEl) {
+                audioEl.currentTime = 16; 
+                audioEl.play().catch(error => console.log("iOS Block Handle", error));
+            }
+            launchSurprise();
+        }
 
         function launchSurprise() {
             showCustomModal("اه وجعتيني ههه بهزر ♥️😂", true);
-            // هنخلي الصفحة تطلع فوق خالص بعد ما كل حاجة في الصفحة التانية تحمل تماماً
-setTimeout(function() {
-    window.scrollTo(0, 0);
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-}, 100);
-        
         }
 
         function openLightbox(cardElement) {
@@ -577,20 +672,6 @@ setTimeout(function() {
                 setTimeout(() => confetti.remove(), 5000);
             }
         }
-        window.onload = function() {
-    const allInputs = document.querySelectorAll('input[type="radio"]');
-    allInputs.forEach(input => input.checked = false);
-
-    // السطرين دول هما اللي بيكتموا الصوت تماماً في أول صفحة
-    if (audioEl) {
-        audioEl.pause();
-        audioEl.currentTime = 0;
-    }
-
-    document.getElementById('quiz-card').style.display = 'block';
-    document.getElementById('surprise-section').style.display = 'none';
-};
-        
     </script>
 
     <style>
